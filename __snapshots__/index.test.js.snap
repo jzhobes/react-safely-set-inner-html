@@ -1,0 +1,197 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReactSafelySetInnerHTML allows for all other tags if an excludedTags list is provided 1`] = `
+Array [
+  " ",
+  <iframe
+    allowFullScreen={true}
+    src="https://www.google.com"
+  />,
+  " ",
+  <span
+    className="span-class"
+  >
+    span
+  </span>,
+  " ",
+  <iframe
+    allowFullScreen={false}
+    src="https://www.microsoft.com"
+  />,
+  " ",
+  " ",
+]
+`;
+
+exports[`ReactSafelySetInnerHTML allows for children as an array of strings 1`] = `
+Array [
+  "Lorem ipsum",
+  <span>
+    span
+  </span>,
+  <div>
+    div
+  </div>,
+]
+`;
+
+exports[`ReactSafelySetInnerHTML converts HTML attributes to React props and allows for the default tags 1`] = `
+Array [
+  "Lorem ipsum dolor ",
+  <div
+    className="div-class"
+    style={
+      Object {
+        "border": "none",
+        "maxFontSize": "12",
+        "maxWidth": "100px",
+      }
+    }
+  >
+    div
+  </div>,
+  " ",
+  <span
+    className="span-class"
+  >
+    span
+  </span>,
+  " ",
+  <p
+    className="p-class"
+  >
+    p
+  </p>,
+  " ",
+  <a
+    className="link"
+    href="https://www.google.com"
+    rel="noreferrer"
+    target="_blank"
+  >
+    anchor
+  </a>,
+  " ",
+  <b>
+    bold
+  </b>,
+  " ",
+  <i>
+    italic
+  </i>,
+  " ",
+  <strong>
+    strong
+  </strong>,
+  " ",
+  <small>
+    small
+  </small>,
+  " ",
+  <table>
+     
+    <caption>
+      caption
+    </caption>
+     
+    <colgroup>
+       
+      <col
+        span={2}
+      />
+      col 
+    </colgroup>
+     
+    <thead>
+       
+      <tr>
+         
+        <th>
+          th
+        </th>
+         
+        <th>
+          th
+        </th>
+         
+      </tr>
+       
+    </thead>
+     
+    <tbody>
+       
+      <tr>
+         
+        <td>
+          td
+        </td>
+         
+        <td>
+          td
+        </td>
+         
+      </tr>
+       
+    </tbody>
+     
+    <tfoot />
+     
+    <video
+      controls={true}
+    >
+       
+      <source
+        src="video.webm"
+        type="video/webm"
+      />
+       
+      <source
+        src="video.ogv"
+        type="video/ogg"
+      />
+       
+      <source
+        src="video.mp4"
+        type="video/mp4"
+      />
+       
+      <source
+        src="video.3gp"
+        type="video/3gp"
+      />
+       Fallback text for video. 
+    </video>
+     
+    <audio
+      controls={true}
+    >
+       
+      <source
+        src="audio.ogg"
+        type="audio/ogg"
+      />
+       
+      <source
+        src="audio.mp3"
+        type="audio/mpeg"
+      />
+       Fallback text for audio. 
+    </audio>
+     
+  </table>,
+]
+`;
+
+exports[`ReactSafelySetInnerHTML handles malformed HTML gracefully 1`] = `
+Array [
+  "Lorem ipsum",
+  <span>
+    <span>
+      &lt;&lt;&lt;
+    </span>
+  </span>,
+  <span />,
+]
+`;
+
+exports[`ReactSafelySetInnerHTML renders simple text 1`] = `"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."`;

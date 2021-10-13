@@ -1,0 +1,8 @@
+# Test coverage directory
+coverage
+
+# Dependency directory
+node_modules/
+
+# Webstorm
+.idea
