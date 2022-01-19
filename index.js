@@ -176,16 +176,35 @@ function _convertToReactComponentChildren(allowedTags, excludedTags, children, k
   });
 }
 
-function ReactSafelySetInnerHTML({allowedTags, excludedTags, children}) {
+
+
+/**
+ * Handles string substitutions prior to conversion.
+ *
+ * @param {string} childrenString
+ * @param {Object.<string, string>} substitutionMap
+ * @return {string}
+ * @private
+ */
+function _handleSubstitutions(childrenString, substitutionMap) {
+  childrenString?.match(/[^{}]+(?=})/g)?.forEach((key) => {
+    if (substitutionMap?.[key]) {
+      childrenString = childrenString.replace(`{${key}}`, substitutionMap[key]);
+    }
+  });
+  return childrenString;
+}
+
+function ReactSafelySetInnerHTML({allowedTags, excludedTags, substitutionMap, children}) {
   try {
     const domChildren = useMemo(() => {
       if (Array.isArray(children)) {
         return children.reduce((arr, childrenString) => {
-          arr = arr.concat(parseDocument(childrenString, parseOptions).children);
+          arr = arr.concat(parseDocument(_handleSubstitutions(childrenString, substitutionMap), parseOptions).children);
           return arr;
         }, []);
       }
-      return parseDocument(children, parseOptions).children;
+      return parseDocument(_handleSubstitutions(children, substitutionMap), parseOptions).children;
     }, [children]);
     return _convertToReactComponentChildren(allowedTags, excludedTags, domChildren);
   } catch (err) {
@@ -201,6 +220,7 @@ ReactSafelySetInnerHTML.defaultProps = {
 ReactSafelySetInnerHTML.propTypes = {
   allowedTags: PropTypes.arrayOf(PropTypes.string),
   excludedTags: PropTypes.arrayOf(PropTypes.string),
+  substitutionMap: PropTypes.object,
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]).isRequired,
 };
 

@@ -33,6 +33,8 @@ By default, the following tags are allowed:
 You can override the default tags by specifying a custom `allowedTags` prop:
 
 ```javascript
+import ReactSafelySetInnerHTML from 'react-safely-set-inner-html';
+
 return (
   <ReactSafelySetInnerHTML allowedTags={['div', 'span', 'p']}>
     {html}
@@ -44,9 +46,24 @@ Alternatively, the `excludedTags` prop blacklists tags, but all other tags not s
 the `allowedTags` prop will be ignored.
 
 ```javascript
+import ReactSafelySetInnerHTML from 'react-safely-set-inner-html';
+
 return (
   <ReactSafelySetInnerHTML excludedTags={['iframe', 'form']}>
     {html}
+  </ReactSafelySetInnerHTML>
+);
+```
+
+String substitutions are supported via the `substitutionMap` prop with keys wrapped in curly braces. Keys without a
+match will be ignored.
+
+```javascript
+import ReactSafelySetInnerHTML from 'react-safely-set-inner-html';
+
+return (
+  <ReactSafelySetInnerHTML substitutionMap={{name: 'Bob'}}>
+    {`Hello, {name}`}
   </ReactSafelySetInnerHTML>
 );
 ```

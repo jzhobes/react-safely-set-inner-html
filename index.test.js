@@ -104,4 +104,32 @@ describe('ReactSafelySetInnerHTML', () => {
     );
     expect(component.toJSON()).toMatchSnapshot();
   });
+
+  it('handles substitutions', () => {
+    const component = renderer.create(
+      <ReactSafelySetInnerHTML
+        substitutionMap={{
+          name: 'Bob',
+          basicMessage: 'Lorem ipsum.',
+          htmlMessage: 'Lorem <b>ipsum</b> dolor.',
+        }}
+      >
+        {`
+          <p>
+            Hello, {name}
+          </p>
+          <p>
+            {basicMessage}
+          </p>
+          <p>
+            {htmlMessage}
+          </p>
+          <p>
+            {noMatchFound}
+          </p>
+        `}
+      </ReactSafelySetInnerHTML>
+    );
+    expect(component.toJSON()).toMatchSnapshot();
+  });
 });
