@@ -195,7 +195,12 @@ function _handleSubstitutions(childrenString, substitutionMap) {
   return childrenString;
 }
 
-function ReactSafelySetInnerHTML({allowedTags, excludedTags, substitutionMap, children}) {
+function ReactSafelySetInnerHTML({
+  allowedTags = ['div', 'span', 'p', 'a', 'b', 'i', 'strong', 'small', 'table', 'thead', 'tbody', 'tfoot', 'th', 'td', 'tr', 'td', 'caption', 'colgroup', 'col', 'video', 'audio', 'source'],
+  excludedTags,
+  substitutionMap,
+  children,
+}) {
   try {
     const domChildren = useMemo(() => {
       if (Array.isArray(children)) {
@@ -212,10 +217,6 @@ function ReactSafelySetInnerHTML({allowedTags, excludedTags, substitutionMap, ch
     return undefined;
   }
 }
-
-ReactSafelySetInnerHTML.defaultProps = {
-  allowedTags: ['div', 'span', 'p', 'a', 'b', 'i', 'strong', 'small', 'table', 'thead', 'tbody', 'tfoot', 'th', 'td', 'tr', 'td', 'caption', 'colgroup', 'col', 'video', 'audio', 'source'],
-};
 
 ReactSafelySetInnerHTML.propTypes = {
   allowedTags: PropTypes.arrayOf(PropTypes.string),
